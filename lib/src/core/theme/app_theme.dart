@@ -12,6 +12,24 @@ ValueNotifier<ThemeMode> themeNotifier = ValueNotifier(ThemeMode.system);
 final ThemeData appTheme = ThemeData(
   primaryColor: AppColors.primary,
   scaffoldBackgroundColor: AppColors.white,
+  inputDecorationTheme: InputDecorationTheme(
+    border: OutlineInputBorder(
+      borderSide: BorderSide(color: Colors.grey.shade300),
+      borderRadius: BorderRadius.circular(10),
+    ),
+    enabledBorder: OutlineInputBorder(
+      borderSide: BorderSide(color: Colors.grey.shade300),
+      borderRadius: BorderRadius.circular(10),
+    ),
+    focusedBorder: OutlineInputBorder(
+      borderSide: BorderSide(color: AppColors.primary),
+      borderRadius: BorderRadius.circular(10),
+    ),
+    errorBorder: OutlineInputBorder(
+      borderSide: BorderSide(color: Colors.red),
+      borderRadius: BorderRadius.circular(10),
+    ),
+  ),
   appBarTheme: AppBarTheme(
     color: AppColors.white,
     centerTitle: true,
@@ -62,22 +80,6 @@ final ThemeData appTheme = ThemeData(
       ),
     ),
   ),
-  inputDecorationTheme: InputDecorationTheme(
-      fillColor: AppColors.transparent,
-      contentPadding: EdgeInsets.symmetric(
-        horizontal: 10,
-      ),
-      suffixIconColor: AppColors.black,
-      border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(10),
-          borderSide: const BorderSide(color: AppColors.white, width: 1)),
-      enabledBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(10),
-          borderSide: const BorderSide(color: AppColors.white, width: 1)),
-      focusedBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(10),
-          borderSide: const BorderSide(color: AppColors.white, width: 1)),
-      errorMaxLines: 2),
 );
 
 /// Dark theme

@@ -1,5 +1,6 @@
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'firebase_options.dart';
@@ -9,6 +10,8 @@ import 'src/core/theme/app_theme.dart';
 import 'src/core/utils/helper.dart';
 import 'src/features/auth/presentation/bloc/login_bloc/login_bloc.dart';
 import 'src/features/auth/presentation/bloc/signup_bloc/signup_bloc.dart';
+import 'src/features/auth/presentation/screens/auth_screen.dart';
+import 'src/features/dashboard/presentation/screens/home_screen.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -38,7 +41,13 @@ class MyApp extends StatelessWidget {
         theme: appTheme,
         darkTheme: darkAppTheme,
         onGenerateRoute: Routes.onGenerateRouted,
-        initialRoute: Routes.home,
+        home: StreamBuilder(stream: FirebaseAuth.instance.userChanges(), builder: (context, snapshot) {
+          if (FirebaseAuth.instance.currentUser != null) {
+            return const HomeScreen();
+          } else {
+            return const AuthScreen();
+          }
+        }),
       ),
     );
   }

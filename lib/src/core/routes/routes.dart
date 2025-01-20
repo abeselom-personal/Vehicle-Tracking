@@ -1,7 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
-import '../../features/auth/presentation/screens/Auth_screen.dart';
+import '../../features/auth/presentation/screens/auth_screen.dart';
 import '../../features/dashboard/presentation/screens/home_screen.dart';
 
 class Routes {
