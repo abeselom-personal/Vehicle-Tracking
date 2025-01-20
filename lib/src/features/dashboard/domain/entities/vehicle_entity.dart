@@ -4,7 +4,9 @@ class VehicleEntity extends Equatable {
   final String id;
   final String name;
   final String status;
-  final String location;
+  final String locationName;
+  final double? latitude;
+  final double? longitude;
   final String? imgUrl;
   final double? fuelLevel;
   final double? mileage;
@@ -14,7 +16,9 @@ class VehicleEntity extends Equatable {
     required this.id,
     required this.name,
     required this.status,
-    required this.location,
+    required this.locationName,
+    this.latitude,
+    this.longitude,
     this.imgUrl,
     this.fuelLevel,
     this.mileage,
@@ -22,6 +26,16 @@ class VehicleEntity extends Equatable {
   });
 
   @override
-  List<Object?> get props =>
-      [id, name, status, location, imgUrl, fuelLevel, mileage, engineTemp];
+  List<Object?> get props => [
+        id,
+        name,
+        status,
+        locationName,
+        latitude,
+        longitude,
+        imgUrl,
+        fuelLevel,
+        mileage,
+        engineTemp,
+      ];
 }

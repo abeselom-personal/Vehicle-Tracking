@@ -1,14 +1,35 @@
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import '../theme/app_colors.dart';
 
 class Helper {
-  static GlobalKey<NavigatorState> navigatorKey =
-      GlobalKey<NavigatorState>();
+  static GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
   static GlobalKey<ScaffoldMessengerState> scaffoldMessengerKey =
       GlobalKey<ScaffoldMessengerState>();
 
   static getImagesPath(String image) {
     return 'assets/images/$image';
+  }
+
+  static Future<String?> getLastKnownLocationName(
+      double latitude, double longitude) async {
+    final url =
+        'https://nominatim.openstreetmap.org/reverse?lat=$latitude&lon=$longitude&format=json';
+
+    try {
+      final response = await Dio().get(url);
+
+      if (response.statusCode == 200) {
+        final data = response.data;
+        return data['display_name'];
+      } else {
+        throw Exception(
+            'Failed to fetch location name: ${response.statusCode}');
+      }
+    } catch (e) {
+      print('Error: $e');
+      return null;
+    }
   }
 
   static Future<dynamic> showBottomSheet({

@@ -1,6 +1,8 @@
 import 'package:firebase_ui_auth/firebase_ui_auth.dart';
 import 'package:flutter/material.dart';
 
+import '../../../core/routes/routes.dart';
+
 class UserProfileScreen extends StatefulWidget {
   const UserProfileScreen({super.key});
 
@@ -17,7 +19,7 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
       ],
       actions: [
         SignedOutAction((context) {
-          Navigator.pushReplacementNamed(context, '/sign-in');
+          Navigator.pushReplacementNamed(context, Routes.auth);
         }),
       ],
     );

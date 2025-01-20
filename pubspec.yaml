@@ -46,6 +46,9 @@ dependencies:
   firebase_auth: ^5.4.0
   firebase_database: ^11.3.0
   firebase_ui_auth: ^1.16.1
+  flutter_map: ^7.0.2
+  latlong2: ^0.9.1
+  syncfusion_flutter_gauges: ^28.1.39
 
 dev_dependencies:
   flutter_test:

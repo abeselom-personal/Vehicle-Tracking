@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart' hide EmailAuthProvider;
 import 'package:firebase_ui_auth/firebase_ui_auth.dart';
 
+import '../../../../core/routes/routes.dart';
+
 class AuthScreen extends StatefulWidget {
   const AuthScreen({super.key});
 
@@ -33,11 +35,10 @@ class _AuthScreenState extends State<AuthScreen> {
       ],
       actions: [
         AuthStateChangeAction<UserCreated>((context, state) {
-          /// Handle user created
-
+          Navigator.pushReplacementNamed(context, Routes.home);
         }),
         AuthStateChangeAction<SignedIn>((context, state) {
-
+          Navigator.pushReplacementNamed(context, Routes.home);
         }),
       ],
     );
