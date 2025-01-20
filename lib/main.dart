@@ -1,0 +1,40 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+
+import 'src/core/routes/routes.dart';
+import 'src/core/service_locator/service_locator.dart';
+import 'src/core/theme/app_theme.dart';
+import 'src/core/utils/helper.dart';
+import 'src/features/auth/presentation/bloc/login_bloc/login_bloc.dart';
+import 'src/features/auth/presentation/bloc/signup_bloc/signup_bloc.dart';
+
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await initAppInjections();
+
+  runApp(const MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider<LoginBloc>(create: (context) => sl<LoginBloc>()),
+        BlocProvider<SignupBloc>(create: (context) => sl<SignupBloc>()),
+      ],
+      child: MaterialApp(
+        title: 'Vehicle Tracker',
+        debugShowCheckedModeBanner: false,
+        navigatorKey: Helper.navigatorKey,
+        scaffoldMessengerKey: Helper.scaffoldMessengerKey,
+        theme: appTheme,
+        darkTheme: darkAppTheme,
+        onGenerateRoute: Routes.onGenerateRouted,
+        initialRoute: Routes.home,
+      ),
+    );
+  }
+}
