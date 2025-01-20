@@ -19,7 +19,7 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
       ],
       actions: [
         SignedOutAction((context) {
-          Navigator.pushReplacementNamed(context, Routes.auth);
+          Navigator.pushNamedAndRemoveUntil(context, Routes.auth, (route) => false);
         }),
       ],
     );

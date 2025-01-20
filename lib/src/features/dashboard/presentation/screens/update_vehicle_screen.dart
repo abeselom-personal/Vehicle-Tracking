@@ -159,7 +159,7 @@ class _UpdateVehicleScreenState extends State<UpdateVehicleScreen> {
                 BlocConsumer<UpdateVehicleBloc, UpdateVehicleState>(
                   listener: (context, state) {
                     if (state is UpdateVehicleSuccess) {
-                      Navigator.pushReplacementNamed(context, Routes.home);
+                      Navigator.pushNamedAndRemoveUntil(context, Routes.home, (route) => false);
                       Helper.showSnackBar(context, state.message);
                     } else if (state is UpdateVehicleFailure) {
                       Helper.showSnackBar(context, state.message);
