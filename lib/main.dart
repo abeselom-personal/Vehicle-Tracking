@@ -10,6 +10,7 @@ import 'src/core/theme/app_theme.dart';
 import 'src/core/utils/helper.dart';
 import 'src/features/auth/presentation/screens/auth_screen.dart';
 import 'src/features/dashboard/presentation/bloc/fetch_all_vehicles_bloc/fetch_all_vehicles_bloc.dart';
+import 'src/features/dashboard/presentation/bloc/update_vehicle_bloc/update_vehicle_bloc.dart';
 import 'src/features/dashboard/presentation/screens/home_screen.dart';
 
 Future<void> main() async {
@@ -31,6 +32,8 @@ class MyApp extends StatelessWidget {
       providers: [
         BlocProvider<FetchAllVehiclesBloc>(
             create: (context) => sl<FetchAllVehiclesBloc>()),
+        BlocProvider<UpdateVehicleBloc>(
+            create: (context) => sl<UpdateVehicleBloc>()),
       ],
       child: MaterialApp(
         title: 'Vehicle Tracker',

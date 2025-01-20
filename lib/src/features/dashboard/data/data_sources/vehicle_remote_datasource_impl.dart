@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:io';
 
 import 'package:firebase_auth/firebase_auth.dart';
@@ -16,7 +17,6 @@ class VehicleRemoteDatasourceImpl implements AbstractVehicleRemoteDataSource {
   @override
   Future<List<VehicleModel>> fetchVehicles() async {
     try {
-      print('Fetching vehicles');
       final snapshot = await _databaseReference.child('vehicles').get();
 
       if (snapshot.exists) {
@@ -25,27 +25,19 @@ class VehicleRemoteDatasourceImpl implements AbstractVehicleRemoteDataSource {
           final vehicleJson = Map<String, dynamic>.from(entry.value);
           return VehicleModel.fromJson(vehicleJson);
         }).toList();
-        print('No vehicles found ss');
         return vehicles;
-      } else {
-        print('No vehicles found');
-        return [];
       }
-    } on FirebaseException catch (e, stackTrace) {
-      print('FirebaseException: $e');
-      print('Stacktrace: $stackTrace');
+      return [];
+    } on FirebaseException catch (e) {
       if (e is SocketException) {
         throw ServerException('No Internet Connection', 101);
       }
       throw ServerException(e.message ?? 'Something went wrong', 101);
     } on SocketException catch (e) {
-      print('SocketException: $e');
       throw Exception('Failed to fetch vehicles: $e');
     } on ServerException catch (e) {
-      print('ServerException: $e');
       throw ServerException('Failed to fetch vehicles: $e', e.statusCode);
     } catch (e) {
-      print('Exception: $e');
       throw Exception('Failed to fetch vehicles: $e');
     }
   }
@@ -61,15 +53,12 @@ class VehicleRemoteDatasourceImpl implements AbstractVehicleRemoteDataSource {
       } else {
         return null;
       }
-    } on FirebaseException catch (e, stackTrace) {
-      print('FirebaseException: $e');
-      print('Stacktrace: $stackTrace');
+    } on FirebaseException catch (e) {
       if (e is SocketException) {
         throw ServerException('No Internet Connection', 101);
       }
       throw ServerException(e.message ?? 'Something went wrong', 101);
     } catch (e) {
-      print('Exception: $e');
       throw Exception('Failed to fetch vehicles: $e');
     }
   }

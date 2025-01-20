@@ -5,7 +5,9 @@ import 'package:vehicle_monitoring_app/src/features/dashboard/domain/repositorie
 
 import '../../features/dashboard/data/data_sources/vehicle_remote_datasource_impl.dart';
 import '../../features/dashboard/domain/usecases/fetch_all_vehicles_usecase.dart';
+import '../../features/dashboard/domain/usecases/update_vehicle_usecase.dart';
 import '../../features/dashboard/presentation/bloc/fetch_all_vehicles_bloc/fetch_all_vehicles_bloc.dart';
+import '../../features/dashboard/presentation/bloc/update_vehicle_bloc/update_vehicle_bloc.dart';
 
 final sl = GetIt.I;
 
@@ -25,7 +27,12 @@ Future<void> initAppInjections() async {
   ///use cases
   sl.registerSingleton<FetchAllVehicleUseCase>(
       FetchAllVehicleUseCase(sl<AbstractVehicleRepository>()));
+  sl.registerSingleton<UpdateVehicleUseCase>(
+      UpdateVehicleUseCase(sl<AbstractVehicleRepository>()));
 
   ///bloc and cubit
-  sl.registerFactory<FetchAllVehiclesBloc>(() => FetchAllVehiclesBloc(sl<FetchAllVehicleUseCase>()));
+  sl.registerFactory<FetchAllVehiclesBloc>(
+      () => FetchAllVehiclesBloc(sl<FetchAllVehicleUseCase>()));
+  sl.registerFactory<UpdateVehicleBloc>(
+      () => UpdateVehicleBloc(sl<UpdateVehicleUseCase>()));
 }

@@ -52,8 +52,9 @@ class _HomeScreenState extends State<HomeScreen>
     return DefaultTabController(
       length: 2,
       child: Scaffold(
+        extendBody: true,
         appBar: AppBar(
-          title: Text('Home'),
+          title: Text(selectedIndex == 0 ? "Vehicle Tracker" : "Profile"),
         ),
         body: TabBarView(
           controller: _tabController,

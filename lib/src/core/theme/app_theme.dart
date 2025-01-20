@@ -35,6 +35,7 @@ final ThemeData appTheme = ThemeData(
     centerTitle: true,
     surfaceTintColor: Colors.transparent,
     elevation: 1,
+    iconTheme: IconThemeData(color: AppColors.gray),
     shadowColor: AppColors.lightGray,
     toolbarTextStyle: const TextTheme(
       titleLarge: AppTextStyle.xxxLargeBlack,

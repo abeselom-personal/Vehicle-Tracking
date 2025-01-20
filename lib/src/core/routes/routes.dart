@@ -4,11 +4,13 @@ import 'package:vehicle_monitoring_app/src/features/dashboard/presentation/scree
 
 import '../../features/auth/presentation/screens/auth_screen.dart';
 import '../../features/dashboard/presentation/screens/home_screen.dart';
+import '../../features/dashboard/presentation/screens/update_vehicle_screen.dart';
 
 class Routes {
   static const String auth = "/auth";
   static const String home = "/";
   static const String vehicleDetails = "/vehicleDetails";
+  static const String updateVehicle = "/updateVehicle";
 
   static String currentRoute = auth;
 
@@ -29,6 +31,10 @@ class Routes {
       case vehicleDetails:
         {
           return VehicleDetailsScreen.route(routeSettings);
+        }
+      case updateVehicle:
+        {
+          return UpdateVehicleScreen.route(routeSettings);
         }
       default:
         {

@@ -38,4 +38,19 @@ class VehicleEntity extends Equatable {
         mileage,
         engineTemp,
       ];
+
+  copyWith({required double fuelLevel, required double engineTemp, required String status, required double mileage}) {
+    return VehicleEntity(
+      id: id,
+      name: name,
+      status: status,
+      locationName: locationName,
+      latitude: latitude,
+      longitude: longitude,
+      imgUrl: imgUrl,
+      fuelLevel: fuelLevel,
+      mileage: mileage,
+      engineTemp: engineTemp,
+    );
+  }
 }
