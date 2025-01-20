@@ -1,0 +1,24 @@
+{
+  "database": {
+    "rules": "database.rules.json"
+  },
+  "flutter": {
+    "platforms": {
+      "android": {
+        "default": {
+          "projectId": "vehicle-tracking-51dda",
+          "appId": "1:298442174887:android:5995b6240c1bf2771e8682",
+          "fileOutput": "android/app/google-services.json"
+        }
+      },
+      "dart": {
+        "lib/firebase_options.dart": {
+          "projectId": "vehicle-tracking-51dda",
+          "configurations": {
+            "android": "1:298442174887:android:5995b6240c1bf2771e8682"
+          }
+        }
+      }
+    }
+  }
+}

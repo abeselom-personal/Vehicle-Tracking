@@ -1,6 +1,8 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import 'firebase_options.dart';
 import 'src/core/routes/routes.dart';
 import 'src/core/service_locator/service_locator.dart';
 import 'src/core/theme/app_theme.dart';
@@ -11,6 +13,9 @@ import 'src/features/auth/presentation/bloc/signup_bloc/signup_bloc.dart';
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await initAppInjections();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
 
   runApp(const MyApp());
 }
