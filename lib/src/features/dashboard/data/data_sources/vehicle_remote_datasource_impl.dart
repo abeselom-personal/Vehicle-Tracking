@@ -3,6 +3,7 @@ import 'dart:io';
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
+import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:vehicle_monitoring_app/src/core/network/errors/exceptions.dart';
 import 'package:vehicle_monitoring_app/src/features/dashboard/data/models/vehicle_model.dart';
 
@@ -17,6 +18,10 @@ class VehicleRemoteDatasourceImpl implements AbstractVehicleRemoteDataSource {
   @override
   Future<List<VehicleModel>> fetchVehicles() async {
     try {
+      final connectivityResult = await Connectivity().checkConnectivity();
+      if (connectivityResult.contains(ConnectivityResult.none)) {
+        throw ServerException('No Internet Connection', 101);
+      }
       final snapshot = await _databaseReference.child('vehicles').get();
 
       if (snapshot.exists) {
@@ -34,11 +39,9 @@ class VehicleRemoteDatasourceImpl implements AbstractVehicleRemoteDataSource {
       }
       throw ServerException(e.message ?? 'Something went wrong', 101);
     } on SocketException catch (e) {
-      throw Exception('Failed to fetch vehicles: $e');
-    } on ServerException catch (e) {
-      throw ServerException('Failed to fetch vehicles: $e', e.statusCode);
+      throw ServerException('Failed to fetch vehicles: $e', 101);
     } catch (e) {
-      throw Exception('Failed to fetch vehicles: $e');
+      throw ServerException('Failed to fetch vehicles: $e', 101);
     }
   }
 

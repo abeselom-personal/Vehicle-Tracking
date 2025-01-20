@@ -38,9 +38,9 @@ class ErrorContainer extends StatelessWidget {
         children: [
           SizedBox(
             child: SvgPicture.asset(
-              errorMessageText.toString().contains('No Internet')
-                  ? 'assets/noInternet.svg'
-                  : 'assets/somethingWentWrong.svg',
+              errorMessageText.toString().contains('No Internet Connection')
+                  ? 'assets/images/noInternet.svg'
+                  : 'assets/images/somethingWentWrong.svg',
               height: size.height * 0.5,
             ),
           ),

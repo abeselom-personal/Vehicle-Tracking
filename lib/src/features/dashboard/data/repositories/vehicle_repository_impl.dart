@@ -1,4 +1,5 @@
 import 'package:dartz/dartz.dart';
+import 'package:vehicle_monitoring_app/src/core/network/errors/exceptions.dart';
 
 import 'package:vehicle_monitoring_app/src/core/network/errors/failures.dart';
 
@@ -18,8 +19,8 @@ class VehicleRepositoryImpl extends AbstractVehicleRepository {
     try {
       final result = await remoteDatasource.fetchVehicles();
       return Right(result);
-    } on Failure catch (e) {
-      return Left(e);
+    } on ServerException catch (e) {
+      return Left(ServerFailure(e.message, e.statusCode));
     }
   }
 
@@ -28,8 +29,8 @@ class VehicleRepositoryImpl extends AbstractVehicleRepository {
     try {
       final result = await remoteDatasource.fetchVehicle(id);
       return Right(result);
-    } on Failure catch (e) {
-      return Left(e);
+    } on ServerException catch (e) {
+      return Left(ServerFailure(e.message, e.statusCode));
     }
   }
 
@@ -38,8 +39,8 @@ class VehicleRepositoryImpl extends AbstractVehicleRepository {
     try {
       final result = await remoteDatasource.updateVehicle(VehicleModel.fromEntity(vehicle));
       return Right(result);
-    } on Failure catch (e) {
-      return Left(e);
+    } on ServerException catch (e) {
+      return Left(ServerFailure(e.message, e.statusCode));
     }
   }
 

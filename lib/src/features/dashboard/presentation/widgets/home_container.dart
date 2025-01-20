@@ -18,7 +18,11 @@ class HomeContainer extends StatelessWidget {
             child: CircularProgressIndicator(),
           );
         } else if (state is FetchAllVehiclesFailure) {
-          return ErrorContainer();
+          return ErrorContainer(
+            onTapRetry: () {
+              context.read<FetchAllVehiclesBloc>().add(FetchAllVehicles());
+            },
+          );
         } else if (state is FetchAllVehiclesSuccess) {
           return ListView.builder(
             padding: const EdgeInsets.all(8),
